@@ -42,7 +42,7 @@ public class morpion
                 resultValue = 'X';
             }
 
-            System.out.println(joueur + ", c'est à vous ! \n"+"Veuillez entrer un numéro de case compris entre 1 et 9.");
+            System.out.println(joueur + ", c'est à vous ! \n"+"Veuillez entrer un numéro de case compris entre 1 et 9. \n\n");
             int casePlayed = player.nextInt();
 
             if (casePlayed >= 10 || casePlayed <= 0)
@@ -53,63 +53,87 @@ public class morpion
 
             switch (casePlayed) {
                 case 1:
-                    case1 = resultValue;
+                    if (verifierCase(case1))
+                    {
+                        case1 = resultValue;
+                    }
                     break;
                 case 2:
-                    case2 = resultValue;
+                    if (verifierCase(case2))
+                    {
+                        case2 = resultValue;
+                    }
                     break;
                 case 3:
-                    case3 = resultValue;
+                    if (verifierCase(case3))
+                    {
+                        case3 = resultValue;
+                    }
                     break;
                 case 4:
-                    case4 = resultValue;
+                    if (verifierCase(case4))
+                    {
+                        case4 = resultValue;
+                    }
                     break;
                 case 5:
-                    case5 = resultValue;
+                    if (verifierCase(case5))
+                    {
+                        case5 = resultValue;
+                    }
                     break;
                 case 6:
-                    case6 = resultValue;
+                    if (verifierCase(case6))
+                    {
+                        case6 = resultValue;
+                    }
                     break;
                 case 7:
-                    case7 = resultValue;
+                    if (verifierCase(case7))
+                    {
+                        case7 = resultValue;
+                    }
                     break;
                 case 8:
-                    case8 = resultValue;
+                    if (verifierCase(case8))
+                    {
+                        case8 = resultValue;
+                    }
                     break;
                 case 9:
-                    case9 = resultValue;
+                    if (verifierCase(case9))
+                    {
+                        case9 = resultValue;
+                    }
                     break;
             }
-            System.out.println("Vous avez choisi la case : " + casePlayed);
             afficherGrille();
 
             //Verification de la victoire, 6 façon de gagner (Ligne ou Diagonales)
-            if(case1 == resultValue && case2 == resultValue && case3 == resultValue)
+            if(case1 == resultValue && case2 == resultValue && case3 == resultValue ||
+                    case4 == resultValue && case5 == resultValue && case6 == resultValue ||
+                    case7 == resultValue && case8 == resultValue && case9 == resultValue ||
+                    case1 == resultValue && case5 == resultValue && case9 == resultValue ||
+                    case3 == resultValue && case5 == resultValue && case7 == resultValue ||
+                    case1 == resultValue && case4 == resultValue && case7 == resultValue ||
+                    case2 == resultValue && case5 == resultValue && case8 == resultValue ||
+                    case3 == resultValue && case6 == resultValue && case9 == resultValue)
             {
                 win = true;
-                System.out.println(joueur +", vous avez gagné !! :)");
-            }
-            else  if (case4 == resultValue && case5 == resultValue && case6 == resultValue)
-            {
-                win = true;
-                System.out.println(joueur +", vous avez gagné !! :)");
-            }
-            else if (case7 == resultValue && case8 == resultValue && case9 == resultValue)
-            {
-                win = true;
-                System.out.println(joueur +", vous avez gagné !! :)");
-            }
-            else if (case1 == resultValue && case5 == resultValue && case9 == resultValue)
-            {
-                win = true;
-                System.out.println(joueur +", vous avez gagné !! :)");
-            }
-            else if (case3 == resultValue && case5 == resultValue && case7 == resultValue)
-            {
-                win = true;
-                System.out.println(joueur +", vous avez gagné !! :)");
-            }
+                Scanner rejouer = new Scanner(System.in); //Création du Scanner
+                System.out.println(joueur +", vous avez gagné !! :) \n Voulez-vous rejouer? [o/n]");
+                String yesNo = player.nextLine();
+                if(yesNo == "y")
+                {
+                    play();
+                }
+                else if (yesNo == "n")
+                {
+                    System.out.println("Désolé de vous voir partir :(");
+                }
 
+
+            }
             else
             {
                 //player.close(); //On ferme le scanner
@@ -117,6 +141,20 @@ public class morpion
             }
         }
 
+    }
+
+
+    public static boolean verifierCase(char caseAVerifier) //fonction vérifiant si les cases sont déjà remplis
+    {
+        if (caseAVerifier == 'X' || caseAVerifier == 'O')
+        {
+            System.out.println("Cette case est déjà remplis");
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     public static void main(String[] args)
